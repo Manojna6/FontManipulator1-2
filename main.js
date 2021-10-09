@@ -1,3 +1,4 @@
+textsize=10;
 function preload() {
     
 }
@@ -12,6 +13,9 @@ function setup() {
 }
 function draw() {
     background('#9BC1BC');
+    textSize(textsize);
+    fill("#d2eb34");
+    text("Hello", 10,200);
 }
 function modelLoaded() {
     console.log("poseNet has been initialized");
@@ -19,5 +23,10 @@ function modelLoaded() {
 function gotPoses(results) {
     if (results.length > 0) {
         console.log(results);
+        leftWristX = results[0].pose.leftWrist.x;
+        leftWristX = results[0].pose.leftWrist.y;
+        rightWristX = results[0].pose.rightWrist.x;
+        rightWristY = results[0].pose.rightWrist.y;
+        textsize=floor(leftWristX - rightWristX)
     }
 }
